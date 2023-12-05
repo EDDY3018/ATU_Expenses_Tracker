@@ -138,7 +138,7 @@ class _LoginState extends State<Login> {
                             .instance
                             .signInWithEmailAndPassword(
                           email:
-                              "${_studentIdController.text.trim()}@crsatu.com",
+                              "${_studentIdController.text.trim()}@atuexpT.com",
                           password: _passwordController.text,
                         );
 

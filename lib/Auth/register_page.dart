@@ -78,7 +78,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   SizedBox(height: 100),
                   Text(
                     "Register",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: BLACK),
                   ),
                   SizedBox(
                     height: 20,
@@ -182,7 +185,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       });
 
                       String result = await _fireAuth.signUp(
-                        email: "${_studentIdController.text.trim()}@atusim.com",
+                        email:
+                            "${_studentIdController.text.trim()}@atuexpT.com",
                         studentId: _studentIdController.text,
                         name: _nameController.text,
                         password: _passwordController.text,
@@ -230,7 +234,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Already a member? "),
+                      Text(
+                        "Already a member? ",
+                        style: GoogleFonts.montserrat(
+                            textStyle: TextStyle(
+                          fontSize: 13,
+                          color: BLACK,
+                          fontWeight: FontWeight.w600,
+                        )),
+                      ),
                       TextButton(
                           onPressed: () {
                             Navigator.push(

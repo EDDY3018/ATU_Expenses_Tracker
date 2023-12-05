@@ -1,12 +1,17 @@
-import 'package:atu_expenses_tracker/expenses.dart';
-import 'package:flutter/material.dart';
 
-import 'Auth/login.dart';
+import 'package:atu_expenses_tracker/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'Splash/splash.dart';
 
 var kColorScheme = ColorScheme.fromSeed(seedColor: const Color(0xff0E5E6F));
 var kDarkColorScheme = ColorScheme.fromSeed(
     brightness: Brightness.dark, seedColor: const Color(0xff0E5E6F));
-void main() {
+void main()async {
+   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    
+      options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MaterialApp(
       darkTheme: ThemeData.dark().copyWith(
@@ -53,7 +58,7 @@ void main() {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const Login(),
+      home: const Splash(),
     ),
   );
 }

@@ -1,9 +1,15 @@
+// ignore_for_file: prefer_const_constructors, use_build_context_synchronously, sort_child_properties_last
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Auth/login.dart';
 import 'components/chart/chart.dart';
 import 'components/expenses/expense_list.dart';
 import 'components/expenses/new_expense.dart';
+import 'config/deleteCache.dart';
+import 'config/firebase/firebaseAuth.dart';
+import 'config/sharePreference.dart';
 import 'models/expense.dart';
 
 class Expenses extends StatefulWidget {
@@ -14,6 +20,8 @@ class Expenses extends StatefulWidget {
 }
 
 class _ExpensesState extends State<Expenses> {
+  final FireAuth _fireAuth = FireAuth();
+
   final List<Expense> _registeredExpenses = [
     Expense(
         date: DateTime.now(),
@@ -77,9 +85,15 @@ class _ExpensesState extends State<Expenses> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-          title: Text('Expense Tracker'),
-          actions: [IconButton(onPressed: _showModal, icon: Icon(Icons.add))]),
+      appBar: AppBar(title: Text('Expense Tracker'), actions: [
+        IconButton(
+            onPressed: () {
+              showLogoutBottomSheet(context);
+            },
+            icon: Icon(Icons.logout_rounded))
+      ]),
+      floatingActionButton:
+          FloatingActionButton(onPressed: _showModal, child: Icon(Icons.add)),
       body: SafeArea(
           child: width < height
               ? Column(
@@ -113,6 +127,36 @@ class _ExpensesState extends State<Expenses> {
                     ),
                   ],
                 )),
+    );
+  }
+
+  void showLogoutBottomSheet(BuildContext context) {
+    showCupertinoModalPopup(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoActionSheet(
+          title: Text('Are you sure you want to Logout?'),
+          actions: [
+            CupertinoActionSheetAction(
+              onPressed: () async {
+                await _fireAuth.signOut();
+                await saveBoolShare(key: "auth", data: false);
+                await deleteCache();
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Login()));
+              },
+              child: Text('Logout'),
+              isDestructiveAction: true,
+            ),
+          ],
+          cancelButton: CupertinoActionSheetAction(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('Cancel'),
+          ),
+        );
+      },
     );
   }
 }
