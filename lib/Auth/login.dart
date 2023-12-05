@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, missing_required_param, use_build_context_synchronously, prefer_final_fields, unnecessary_string_interpolations, avoid_print, unused_local_variable, unused_element
 
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,7 +19,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
- 
+
   void _showPasswordMismatchSnackbar() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -68,7 +67,10 @@ class _LoginState extends State<Login> {
                   SizedBox(height: 200),
                   Text(
                     "Login",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: BLACK),
                   ),
                   SizedBox(
                     height: 20,
@@ -196,7 +198,15 @@ class _LoginState extends State<Login> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("New to Crime Reporter? "),
+                      Text(
+                        "New to Crime Reporter? ",
+                        style: GoogleFonts.montserrat(
+                            textStyle: TextStyle(
+                          fontSize: 13,
+                          color: BLACK,
+                          fontWeight: FontWeight.w600,
+                        )),
+                      ),
                       TextButton(
                           onPressed: () {
                             Navigator.push(

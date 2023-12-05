@@ -1,6 +1,8 @@
 import 'package:atu_expenses_tracker/expenses.dart';
 import 'package:flutter/material.dart';
 
+import 'Auth/login.dart';
+
 var kColorScheme = ColorScheme.fromSeed(seedColor: const Color(0xff0E5E6F));
 var kDarkColorScheme = ColorScheme.fromSeed(
     brightness: Brightness.dark, seedColor: const Color(0xff0E5E6F));
@@ -51,7 +53,7 @@ void main() {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const Expenses(),
+      home: const Login(),
     ),
   );
 }
