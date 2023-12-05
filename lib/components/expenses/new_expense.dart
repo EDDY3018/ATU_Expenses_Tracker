@@ -1,5 +1,6 @@
-import 'package:expense_tracker_app/models/expense.dart';
 import 'package:flutter/material.dart';
+
+import '../../models/expense.dart';
 
 class NewExpense extends StatefulWidget {
   final Function onAdd;
